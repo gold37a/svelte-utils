@@ -15,7 +15,7 @@
    */
   let previousPosition: GeolocationPosition | null = null;
 
-  const dispatch = createEventDispatcher<{ positionChange: { distance: number }, not_available: undefined }>();
+  const dispatch = createEventDispatcher<{ positionChange: { distance: number, position: GeolocationPosition }, not_available: undefined }>();
 
   /**
    * Processes the new position.
@@ -27,7 +27,7 @@
     if (previousPosition) {
       const distance = getDistance(previousPosition, position);
       if (distance > threshold) {
-        dispatch('positionChange', { distance });
+        dispatch('positionChange', { distance, position });
       }
     }
     previousPosition = position;
