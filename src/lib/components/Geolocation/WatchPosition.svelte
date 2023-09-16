@@ -15,7 +15,7 @@
    */
   let previousPosition: GeolocationPosition | null = null;
 
-  const dispatch = createEventDispatcher<{ positionChange: { distance: number, position: GeolocationPosition }, not_available: undefined }>();
+  const dispatch = createEventDispatcher<{ positionChange: { distance: number, position: GeolocationPosition }, not_available: undefined, available: undefined }>();
 
   /**
    * Processes the new position.
@@ -64,6 +64,7 @@
 
   onMount(() => {
     if ('geolocation' in navigator) {
+      dispatch('available');
       navigator.geolocation.watchPosition(processPosition, handleError);
     } else {
       console.warn('Geolocation is not available');
