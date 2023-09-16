@@ -3,11 +3,11 @@
   import { createEventDispatcher } from 'svelte';
 
   /**
-   * Threshold for position change in millimeters.
+   * Threshold for position change in miles.
    * @type {number}
    */
   export let threshold: number = 37; 
-  threshold /= 1000; // Convert to meters
+  threshold *= 1609.34; // Convert to meters
 
   /**
    * The last known position.
