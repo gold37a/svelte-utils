@@ -1,17 +1,19 @@
-<script>
+<script lang='ts'>
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { offline } from '$lib/stores.js';
+
+	export let offline: boolean;
 
 	const dispatch = createEventDispatcher();
 
 	onMount(() => {
+		offline = !navigator.onLine;
 		window.addEventListener('offline', () => {
+			offline = true;
 			dispatch('offline');
-			$offline = true;
 		});
 		window.addEventListener('online', () => {
+			offline = false;
 			dispatch('online');
-			$offline = true;
 		});
 	});
 </script>
